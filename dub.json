@@ -1,0 +1,13 @@
+{
+    "name": "libaio",
+    "description": "Dynamic binding to the Linux libaio library",
+    "homepage": "https://github.com/Boris-Barboris/libaio",
+    "license": "BSL-1.0",
+    "targetType": "library",
+    "authors": [
+        "Boris-Barboris"
+    ],
+    "dependencies": {
+        "derelict-util": ">=2.0.0"
+    }
+}

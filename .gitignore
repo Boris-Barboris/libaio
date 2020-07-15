@@ -1,3 +1,7 @@
+.envrc
+libaio.h
+libaio_example
+
 # Compiled Object files
 *.o
 *.obj

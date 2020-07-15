@@ -1,0 +1,14 @@
+{
+    "name": "libaio_example",
+    "description": "An example binary for the Linux libaio library binding.",
+    "homepage": "https://github.com/Boris-Barboris/libaio",
+    "license": "BSL-1.0",
+    "targetType": "executable",
+    "authors": [
+        "Boris-Barboris"
+    ],
+    "dependencies": {
+        "libaio": { "path": "../" }
+    },
+    "lflags-ldc": ["--export-dynamic"]
+}

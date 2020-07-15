@@ -1,3 +1,6 @@
+/*
+Copyright 2020 Boris-Barboris
+
 Boost Software License - Version 1.0 - August 17th, 2003
 
 Permission is hereby granted, free of charge, to any person or organization
@@ -21,4 +24,46 @@ SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE
 FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE,
 ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
+*/
+module libaio.loader;
 
+public import derelict.util.exception;
+import derelict.util.loader;
+
+import libaio;
+
+
+private enum libNames = "libaio.so.1,libaio.so";
+
+
+class DerelictLibaioLoader: SharedLibLoader
+{
+    protected
+    {
+        this()
+        {
+            super(libNames);
+        }
+
+        override void loadSymbols()
+        {
+            bindFunc(cast(void**)&io_queue_init, "io_queue_init");
+            bindFunc(cast(void**)&io_queue_release, "io_queue_release");
+            bindFunc(cast(void**)&io_queue_run, "io_queue_run");
+            bindFunc(cast(void**)&io_setup, "io_setup");
+            bindFunc(cast(void**)&io_destroy, "io_destroy");
+            bindFunc(cast(void**)&io_submit, "io_submit");
+            bindFunc(cast(void**)&io_cancel, "io_cancel");
+            bindFunc(cast(void**)&io_getevents, "io_getevents");
+            bindFunc(cast(void**)&io_pgetevents, "io_pgetevents");
+        }
+    }
+}
+
+
+__gshared DerelictLibaioLoader DerelictLibaio;
+
+shared static this()
+{
+    DerelictLibaio = new DerelictLibaioLoader();
+}
